@@ -16,7 +16,7 @@ class AddFunctionForSendingMoney extends Migration
         CREATE FUNCTION send_money_from_user_to_user (usernameFrom TEXT, usernameTo TEXT, amountOfMoney INT) RETURNS void AS $$         
             BEGIN
             
-                LOCK TABLE public.user IN SHARE ROW EXCLUSIVE MODE;  
+                LOCK TABLE public.user IN ACCESS EXCLUSIVE MODE;  
                                 
                 IF ((SELECT EXISTS(SELECT 1 FROM public.user where username = usernameFrom)) IS FALSE) THEN
                     RAISE EXCEPTION '||Пользователь % не существует||', usernameFrom;
