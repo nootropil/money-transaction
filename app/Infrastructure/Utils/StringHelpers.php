@@ -6,12 +6,22 @@ namespace App\Infrastructure\Utils;
 
 final class StringHelpers
 {
-    public static function getBetween($content,$start,$end){
+    /**
+     * @param $content
+     * @param $start
+     * @param $end
+     * @return null|string
+     */
+    public static function getBetween($content, $start, $end): ?string
+    {
         $r = explode($start, $content);
-        if (isset($r[1])){
+
+        if (isset($r[1])) {
             $r = explode($end, $r[1]);
+
             return $r[0];
         }
-        return '';
+
+        return null;
     }
 }
