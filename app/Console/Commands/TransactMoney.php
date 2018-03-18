@@ -80,11 +80,9 @@ class TransactMoney extends Command
 
         try {
             $this->moneyTransactionService->sendMoney($usernameFrom, $usernameTo, $amountOfMoney);
+            $this->info('<fg=green>Деньги успешно переведенны!</>');
         } catch (\LogicException $exception) {
             $this->info('<error>' . $exception->getMessage() . '</error>');
-            return;
         }
-
-        $this->info('<fg=green>Деньги успешно переведенны!</>');
     }
 }
